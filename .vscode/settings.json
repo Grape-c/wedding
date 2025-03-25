@@ -1,0 +1,81 @@
+{
+  // 編輯器設定
+  "editor.fontLigatures": true,
+  "editor.rulers": [
+    80,
+    120
+  ],
+  "editor.wordWrap": "on",
+  "editor.renderControlCharacters": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit",
+    "source.organizeImports": "explicit"
+  },
+  "editor.tabSize": 2,
+  "editor.formatOnSave": true,
+  // 換行符號
+  "files.eol": "\n",
+  // emmet 輸入設定
+  "emmet.triggerExpansionOnTab": true,
+  "emmet.syntaxProfiles": {
+    "vue-html": "html",
+    "vue": "html"
+  },
+  "emmet.includeLanguages": {
+    "vue-html": "html",
+    "vue": "html"
+  },
+  // html 相關配置
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "html.format.wrapAttributes": "force-expand-multiline",
+  "html.format.wrapLineLength": 80,
+  "html.format.enable": true,
+  "html.format.indentInnerHtml": true,
+  // JS/TS 相關配置
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "javascript.preferences.quoteStyle": "single",
+  "typescript.preferences.quoteStyle": "single",
+  // 配置副檔名與預設語言狀態
+  "files.associations": {
+    "*.json": "jsonc",
+    "*.cjs": "javascript",
+    "*.vue": "vue"
+  },
+  
+  /* --- Vue3 --- */
+  // vue 配置
+  "[vue]": {
+    "editor.defaultFormatter": "Vue.volar"
+  },
+  /* --- end of Vue3 --- */
+
+  // Prettier 設定
+  "prettier.singleQuote": true,
+  "prettier.semi": true,
+  "prettier.trailingComma": "all",
+  "prettier.printWidth": 80,
+  "prettier.tabWidth": 2,
+  "prettier.endOfLine": "lf",
+  "prettier.singleAttributePerLine": true,
+  "prettier.htmlWhitespaceSensitivity": "ignore",
+  "prettier.vueIndentScriptAndStyle": true,
+
+  // Vue 設定
+  "vue.inlayHints.optionsWrapper": true,
+  "vue.complete.casing.props": "kebab",
+  "vue.complete.casing.tags": "kebab"
+}
