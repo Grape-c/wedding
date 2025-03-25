@@ -1,5 +1,5 @@
 <template>
-  <div class="flex h-[calc(100vh-4rem)]">
+  <div class="flex h-[calc(100vh-4rem)] background-image">
     <!-- 左側計時器 -->
     <div class="w-1/2 flex items-center justify-center">
       <div class="text-center relative">
@@ -27,7 +27,7 @@
                 >
                   <animate
                     attributeName="stop-color"
-                    values="#fb923c20;#fdba7420;#fb923c20"
+                    values="#ffffff50;#ffffff50;#ffffff50"
                     dur="8s"
                     repeatCount="indefinite"
                   />
@@ -38,7 +38,7 @@
                 >
                   <animate
                     attributeName="stop-color"
-                    values="#f9732615;#ea580c15;#f9732615"
+                    values="#ffffff75;#ffffff75;#ffffff75"
                     dur="8s"
                     repeatCount="indefinite"
                   />
@@ -57,7 +57,7 @@
                 >
                   <animate
                     attributeName="stop-color"
-                    values="#fb923c30;#fdba7430;#fb923c30"
+                    values="#ffffff75;#ffffff75;#ffffff75"
                     dur="8s"
                     repeatCount="indefinite"
                   />
@@ -68,7 +68,7 @@
                 >
                   <animate
                     attributeName="stop-color"
-                    values="#f9732625;#ea580c25;#f9732625"
+                    values="#ffffff50;#ffffff50;#ffffff50"
                     dur="8s"
                     repeatCount="indefinite"
                   />
@@ -87,7 +87,7 @@
                 >
                   <animate
                     attributeName="stop-color"
-                    values="#fb923c25;#fdba7425;#fb923c25"
+                    values="#ffffff75;#ffffff75;#ffffff75"
                     dur="8s"
                     repeatCount="indefinite"
                   />
@@ -98,7 +98,7 @@
                 >
                   <animate
                     attributeName="stop-color"
-                    values="#f9732620;#ea580c20;#f9732620"
+                    values="#ffffff50;#ffffff50;#ffffff50"
                     dur="8s"
                     repeatCount="indefinite"
                   />
@@ -142,7 +142,7 @@
                 attributeName="transform"
                 type="rotate"
                 from="0 220 140"
-                to="180 220 140"
+                to="360 220 140"
                 dur="25s"
                 repeatCount="indefinite"
               />
@@ -176,8 +176,10 @@
         </div>
 
         <div class="relative z-10 py-8">
-          <h2 class="text-2xl font-bold mb-4">倒數</h2>
-          <div class="text-4xl font-mono">
+          <h1 class="text-6xl mb-2 font-bold number-font">Jim & Dorothy</h1>
+          <h2 class="text-5xl mb-3 font-bold countdown-font">德毅的一天</h2>
+          <!-- <h3 class="text-2xl mb-2 countdown-font">最後倒數</h3> -->
+          <div class="text-4xl font-mono number-font">
             {{ formatTime(timeLeft) }}
           </div>
         </div>
@@ -200,7 +202,7 @@ const formatTime = (seconds: number) => {
   const hours = Math.floor((seconds % (24 * 60 * 60)) / (60 * 60))
   const mins = Math.floor((seconds % (60 * 60)) / 60)
   const secs = seconds % 60
-  return `${days}天 ${hours.toString().padStart(2, '0')}:${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`
+  return `${days}days ${hours.toString().padStart(2, '0')}:${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`
 }
 
 const updateTimer = () => {
@@ -216,8 +218,54 @@ onMounted(() => {
 </script>
 
 <style scoped>
+@import url('https://fonts.cdnfonts.com/css/morano');
+@import url('https://fonts.cdnfonts.com/css/testimonia');
+@font-face {
+  font-family: naikaifont;
+  src: url(https://cdn.jsdelivr.net/gh/max32002/naikaifont@1.0/webfont/NaikaiFont-Regular-Lite.woff2) format("woff2");
+}
+
+@font-face {
+  font-family: 'JasonHandwriting8';
+  src: url('@/assets/fonts/JasonHandwriting8.ttf');
+}
+
+@font-face {
+  font-family: 'Cendol Pulut';
+  src: url(https://fonts.cdnfonts.com/css/cendol-pulut) format("woff2");
+}
+
+.number-font {
+  font-family: 'morano', sans-serif;
+}
+
+.countdown-font {
+  font-family: JasonHandwriting8, monospace;
+}
+
+.background-image {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('@/assets/image/HomePageBG.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: -1; /* Ensure it is at the bottom */
+}
+
 .blob {
   filter: blur(2px);
+}
+
+
+.background-image {
+  background-image: url('@/assets/image/HomePageBG.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .animate-blob1 {
