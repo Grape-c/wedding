@@ -1,8 +1,11 @@
 <template>
-  <div class="background" />
+  <div class="background">
+    <div class="mx-auto px-4 py-12 mt-16 relative z-10">321
+    </div>
+  </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .background {
   position: fixed;
   top: 0;

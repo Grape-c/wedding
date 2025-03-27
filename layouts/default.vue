@@ -1,32 +1,35 @@
 <template>
-  <div class="relative min-h-screen">
+  <div class="layout-container">
     <div class="glow-container">
       <div
         ref="glowEffect"
         class="glow-effect"
       />
     </div>
+
+    <!-- 導航選單 RWD -->
     <UNavigationMenu
       :items="navigationItems"
       variant="link"
       class="flex items-center justify-center transition-colors p-2"
-      :ui="{
-        item: 'px-6 py-3 rounded-xl transition-colors duration-200 relative',
-      }"
     >
       <template #item="{ item }">
-        <span
-          class="text-white transition-colors font-handwriting tracking-normal hover:text-white hover:font-extrabold whitespace-nowrap px-2 flex items-center gap-2 relative"
-        >
-          {{ item.label.split('-')[0] }}
+        <span class="nav-link">
+          <!-- 在小螢幕上只顯示圖標 -->
           <UIcon
             :name="item.icon"
-            class="w-4 h-4"
+            class="icon-size"
           />
-          {{ item.label.split('-')[1] }}
+          <!-- 在大螢幕上顯示完整文字 -->
+          <span class="hidden sm:inline">
+            {{ item.label.split('-')[0] }}
+          </span>
+          <span class="hidden lg:inline">
+            -{{ item.label.split('-')[1] }}
+          </span>
           <div
             v-if="isActiveRoute(item.to)"
-            class="absolute -bottom-2 left-0 w-full h-[3px] hand-drawn-line"
+            class="active-indicator"
           >
             <svg
               class="w-full h-full overflow-visible"
@@ -205,8 +208,8 @@ onMounted(() => {
 
 .glow-effect {
   position: fixed;
-  width: 500px;
-  height: 500px;
+  width: 300px;
+  height: 300px;
   background: radial-gradient(circle at center,
       rgba(255, 255, 255, 0.205) 0%,
       rgba(255, 255, 255, 0.1) 30%,
@@ -216,6 +219,11 @@ onMounted(() => {
   opacity: 0;
   transition: opacity 0.2s ease, transform 0.1s ease;
   will-change: left, top, opacity, transform;
+
+  @media (min-width: 640px) {
+    width: 500px;
+    height: 500px;
+  }
 }
 
 .hand-drawn-line {
@@ -248,6 +256,96 @@ onMounted(() => {
 
   100% {
     stroke-dashoffset: 0;
+  }
+}
+
+.nav-menu {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+  width: 100%;
+  padding: 0.5rem 0;
+  margin: 0 auto;
+
+  @media (min-width: 640px) {
+    padding: 1rem 0;
+  }
+}
+
+.nav-item {
+  padding: 0.5rem;
+  border-radius: 0.75rem;
+  transition: all 0.2s;
+  position: relative;
+  text-align: center;
+  margin: 0 0.25rem;
+
+  @media (min-width: 640px) {
+    padding: 0.75rem 1.5rem;
+    margin: 0 0.5rem;
+  }
+}
+
+.nav-link {
+  color: white;
+  transition: all 0.3s;
+  font-family: 'morano', 'JasonHandwriting8';
+  letter-spacing: normal;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  font-size: 0.9rem;
+  min-width: 2.5rem;
+
+  &:hover {
+    color: white;
+    font-weight: 800;
+  }
+
+  @media (min-width: 640px) {
+    gap: 0.75rem;
+    font-size: 1.1rem;
+    min-width: auto;
+  }
+}
+
+.icon-size {
+  width: 1.25rem;
+  height: 1.25rem;
+
+  @media (min-width: 640px) {
+    width: 1rem;
+    height: 1rem;
+  }
+}
+
+.active-indicator {
+  position: absolute;
+  bottom: -0.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 3px;
+
+  @media (min-width: 640px) {
+    left: 0;
+    transform: none;
+    width: 100%;
+  }
+}
+
+// 頁面容器
+.page-container {
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
+  padding: 0 1rem;
+
+  @media (min-width: 640px) {
+    padding: 0 2rem;
   }
 }
 </style>
