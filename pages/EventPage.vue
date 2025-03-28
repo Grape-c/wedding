@@ -1,7 +1,6 @@
 <template>
-  <div class="page-wrapper">
-    <div class="background" />
-    <div class="mx-auto px-4 py-2 md:py-10">
+  <div class="page-wrapper background">
+    <div class="px-4 py-2 md:py-10 mt-16">
       <div
         class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8"
       >

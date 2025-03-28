@@ -12,20 +12,24 @@
       :items="navigationItems"
       variant="link"
       class="flex items-center justify-center transition-colors p-2"
+      :ui="{
+        list: 'flex items-center justify-center gap-6 sm:gap-6 lg:gap-10',
+        item: 'nav-item'
+      }"
     >
       <template #item="{ item }">
         <span class="nav-link">
+          <!-- 在大螢幕上顯示完整文字 -->
+          <span class="hidden sm:inline">
+            {{ item.label.split('-')[0] }}
+          </span>
           <!-- 在小螢幕上只顯示圖標 -->
           <UIcon
             :name="item.icon"
             class="icon-size"
           />
-          <!-- 在大螢幕上顯示完整文字 -->
-          <span class="hidden sm:inline">
-            {{ item.label.split('-')[0] }}
-          </span>
           <span class="hidden lg:inline">
-            -{{ item.label.split('-')[1] }}
+            {{ item.label.split('-')[1] }}
           </span>
           <div
             v-if="isActiveRoute(item.to)"
@@ -279,11 +283,9 @@ onMounted(() => {
   transition: all 0.2s;
   position: relative;
   text-align: center;
-  margin: 0 0.25rem;
 
   @media (min-width: 640px) {
     padding: 0.75rem 1.5rem;
-    margin: 0 0.5rem;
   }
 }
 
@@ -296,7 +298,7 @@ onMounted(() => {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.25rem;
+  gap: 0.5rem;
   font-size: 0.9rem;
   min-width: 2.5rem;
 
