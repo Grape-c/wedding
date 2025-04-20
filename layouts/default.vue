@@ -63,8 +63,10 @@
 </template>
 
 <script setup lang="ts">
+import { useRouter } from 'vue-router';
 
 const route = useRoute();
+const router = useRouter();
 
 const menuItems = [
   {
@@ -73,12 +75,12 @@ const menuItems = [
     to: '/HomePage'
   },
   {
-    label: '活動事項 - Events',
+    label: '活動 - Events',
     icon: 'i-lucide-badge-info',
     to: '/EventPage'
   },
   {
-    label: '婚禮流程 - Wedding Schedule',
+    label: '流程 - Schedule',
     icon: 'i-lucide-flower',
     to: '/SchedulePage'
   }
@@ -128,6 +130,11 @@ onMounted(() => {
     document.removeEventListener('mousemove', handleMouseMove);
     document.removeEventListener('mouseleave', handleMouseLeave);
   });
+
+  // 如果當前路徑是根路徑 '/'，導向 HomePage
+  if (router.currentRoute.value.path === '/') {
+    router.push('/HomePage');
+  }
 });
 </script>
 
@@ -138,7 +145,7 @@ onMounted(() => {
 }
 
 .font-handwriting {
-  font-family: 'morano', 'JasonHandwriting8';
+  font-family: 'White Farmhouse', 'JasonHandwriting8';
   font-weight: 200;
   font-size: 1.1rem;
   line-height: 1.5;

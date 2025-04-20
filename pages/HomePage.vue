@@ -1,11 +1,12 @@
 <template>
   <div class="flex h-[calc(100vh-4rem)] background-image">
     <!-- 左側計時器 -->
-    <div class="w-1/2 flex items-center justify-center">
-      <div class="text-center relative">
+    <div class="w-1/2 flex items-center justify-center timer-container">
+      <div class="text-center relative timer-content">
         <!-- 流動背景形狀 - 底層 -->
         <div
-          class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 -z-10"
+          class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 -z-10 blob-container"
+          :class="{ 'blob-visible': isLoaded }"
         >
           <svg
             width="600"
@@ -175,7 +176,7 @@
           </svg>
         </div>
 
-        <div class="relative z-10 py-8">
+        <div class="relative z-10 py-8 text-content-wrapper">
           <h1 class="text-6xl mb-2 font-bold number-font">Jim & Dorothy</h1>
           <h2 class="text-5xl mb-3 font-bold countdown-font">德毅的一天</h2>
           <!-- <h3 class="text-2xl mb-2 countdown-font">最後倒數</h3> -->
@@ -196,6 +197,7 @@
 <script setup lang="ts">
 const targetDate = new Date('2025-05-17T12:00:00')
 const timeLeft = ref(0)
+const isLoaded = ref(false)
 
 const formatTime = (seconds: number) => {
   const days = Math.floor(seconds / (24 * 60 * 60))
@@ -214,26 +216,26 @@ const updateTimer = () => {
 onMounted(() => {
   updateTimer() // 立即更新一次
   setInterval(updateTimer, 1000) // 每秒更新一次
+
+  // 添加一個小延遲來觸發動畫
+  setTimeout(() => {
+    isLoaded.value = true
+  }, 100)
 })
 </script>
 
 <style scoped>
 @import url('https://fonts.cdnfonts.com/css/morano');
 @import url('https://fonts.cdnfonts.com/css/testimonia');
-@font-face {
-  font-family: naikaifont;
-  src: url(https://cdn.jsdelivr.net/gh/max32002/naikaifont@1.0/webfont/NaikaiFont-Regular-Lite.woff2) format("woff2");
-}
+@import url('https://fonts.cdnfonts.com/css/white-farmhouse');
+
 
 @font-face {
   font-family: 'JasonHandwriting8';
   src: url('@/assets/fonts/JasonHandwriting8.ttf');
+  font-display: swap;
 }
 
-@font-face {
-  font-family: 'Cendol Pulut';
-  src: url(https://fonts.cdnfonts.com/css/cendol-pulut) format("woff2");
-}
 
 .number-font {
   font-family: 'morano', sans-serif;
@@ -253,7 +255,8 @@ onMounted(() => {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  z-index: -1; /* Ensure it is at the bottom */
+  z-index: -1;
+  /* Ensure it is at the bottom */
 }
 
 .blob {
@@ -329,6 +332,47 @@ onMounted(() => {
 
   66% {
     transform: scale(0.9) rotate(2deg);
+  }
+}
+
+.timer-container {
+  @media (max-width: 640px) {
+    transform: translateX(50px);
+  }
+}
+
+/* 確保內容在偏移時不會被切掉 */
+.timer-content {
+  @media (max-width: 640px) {
+    width: 100%;
+    padding: 0 1rem;
+  }
+}
+
+.blob-container {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.blob-visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* 添加預載入動畫 */
+.text-content-wrapper {
+  opacity: 0;
+  animation: fadeIn 0.5s ease forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
   }
 }
 </style>

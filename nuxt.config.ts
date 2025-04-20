@@ -13,4 +13,15 @@ export default defineNuxtConfig({
     '@nuxt/ui',
   ],
   css: ['~/assets/css/main.css'],
+
+  app: {
+    pageTransition: { name: 'page', mode: 'out-in' },
+  },
+
+  routeRules: {
+    // 將根路徑重定向到 HomePage
+    '/': { redirect: '/HomePage' },
+    // 將 404 重定向到 HomePage
+    '/:pathMatch(.*)*': { redirect: '/HomePage' }
+  }
 })

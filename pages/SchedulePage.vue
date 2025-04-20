@@ -1,37 +1,49 @@
 <template>
   <div class="page-wrapper background">
-    <div class="mx-auto px-4 py-12 mt-16 relative z-10">
+    <div class="mx-auto px-4 py-12 mt-4 md:mt-16 relative z-10">
       <div class="timeline-container">
-        <div class="timeline-line" />
-
         <div class="timeline-items">
-          <div
+          <!-- 遍歷所有事件 -->
+          <template
             v-for="(event, index) in scheduleEvents"
             :key="index"
-            class="timeline-item"
           >
-            <!-- 左側時間和標題 -->
-            <div class="time-title-block">
-              <span class="time font-handwriting">{{ event.time }}</span>
-              <h3 class="title font-handwriting">{{ event.title }}</h3>
+            <!-- 事件區塊 -->
+            <div class="event-block">
+              <div class="time-title-block">
+                <span class="time font-handwriting">{{ event.time }}</span>
+                <h3 class="title font-handwriting">{{ event.title }}</h3>
+              </div>
+
+              <div
+                class="icon-block"
+                @mouseenter="handleInteraction(index)"
+                @mouseleave="handleInteraction(null)"
+                @click="handleInteraction(index)"
+              >
+                <UIcon
+                  :name="event.icon"
+                  class="icon"
+                />
+                <!-- 懸浮內容 -->
+                <div
+                  class="content-block"
+                  :class="{ 'show': hoveredIndex === index }"
+                >
+                  <div class="connector" />
+                  <p class="description font-handwriting">
+                    {{ event.description }}
+                  </p>
+                </div>
+              </div>
             </div>
 
-            <!-- 中間圖標 -->
-            <div class="icon-block">
-              <UIcon
-                :name="event.icon"
-                class="icon"
-              />
-            </div>
-
-            <!-- 右側詳細資訊 -->
-            <div class="content-block">
-              <div class="connector" />
-              <p class="description font-handwriting">
-                {{ event.description }}
-              </p>
-            </div>
-          </div>
+            <!-- 連接線 (最後一個不需要) -->
+            <div
+              v-if="index < scheduleEvents.length - 1"
+              class="timeline-connector"
+            />
+          </template>
         </div>
       </div>
     </div>
@@ -39,6 +51,8 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue';
+
 interface ScheduleEvent {
   time: string;
   icon: string;
@@ -48,13 +62,13 @@ interface ScheduleEvent {
 
 const scheduleEvents: ScheduleEvent[] = [
   {
-    time: '11:30',
+    time: '11:00',
     icon: 'i-lucide-users',
     title: '入席',
     description: '歡迎親朋好友蒞臨，請提早入席'
   },
   {
-    time: '12:00',
+    time: '11:30',
     icon: 'i-lucide-party-popper',
     title: '開場',
     description: '婚禮正式開始，新人進場'
@@ -66,10 +80,10 @@ const scheduleEvents: ScheduleEvent[] = [
     description: '享用美味佳餚，共度歡樂時光'
   },
   {
-    time: '13:30',
+    time: '13:00',
     icon: 'i-lucide-camera',
-    title: '拍照時間',
-    description: '新人敬酒與賓客合影'
+    title: '活動時間',
+    description: '新人敬酒與歡樂活動'
   },
   {
     time: '14:30',
@@ -78,6 +92,17 @@ const scheduleEvents: ScheduleEvent[] = [
     description: '感謝各位的祝福，期待下次相見'
   }
 ];
+
+const hoveredIndex = ref<number | null>(null);
+
+const handleInteraction = (index: number | null) => {
+  // 如果點擊的是當前顯示的項目，則關閉它
+  if (hoveredIndex.value === index) {
+    hoveredIndex.value = null;
+  } else {
+    hoveredIndex.value = index;
+  }
+};
 </script>
 
 <style scoped lang="scss">
@@ -109,94 +134,55 @@ const scheduleEvents: ScheduleEvent[] = [
   max-width: 1200px;
   margin: 0 auto;
   padding: 2rem 1rem;
-}
-
-.timeline-line {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  width: 100%;
-  height: 2px;
-  background: rgba(255, 255, 255, 0.3);
-  transform: translateY(-50%);
 
   @media (max-width: 640px) {
-    left: 1.25rem;
-    top: 0;
-    bottom: 0;
-    width: 2px;
-    height: auto;
-    transform: translateX(-50%);
+    margin-top: 0;
+    padding-top: 0;
   }
 }
 
 .timeline-items {
-  position: relative;
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
   padding: 2rem 0;
+  position: relative;
 
   @media (max-width: 640px) {
+    display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 0;
+    padding-left: 0;
+    padding-top: 0;
   }
 }
 
-.timeline-item {
-  flex: 1;
+.event-block {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 1rem;
-  max-width: 200px;
+  width: 160px;
   position: relative;
 
-  &:hover {
-    .content-block {
-      opacity: 1;
-      transform: translateX(-50%) translateY(0.5rem);
-
-      .connector {
-        height: 0.5rem;
-        opacity: 1;
-      }
-    }
-
-    .icon-block {
-      transform: scale(1.1);
-      background: rgba(255, 255, 255, 0.2);
-
-      .icon {
-        transform: rotate(360deg);
-      }
-    }
+  @media (max-width: 640px) {
+    flex-direction: row;
+    width: 100%;
+    gap: 1rem;
+    position: relative;
+    padding: 2rem 1rem;
   }
+}
 
-  &:not(:last-child)::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    right: -1rem;
-    width: 1rem;
-    height: 2px;
-    background: rgba(255, 255, 255, 0.3);
-    transform: translateY(-50%);
-  }
+.timeline-connector {
+  width: 100px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.15);
+  margin: 0 -1px;
 
   @media (max-width: 640px) {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.5rem;
-    margin-left: 3rem;
-    padding-bottom: 2rem;
-    max-width: none;
-
-    &:not(:last-child)::after {
-      display: none;
-    }
+    display: none;
   }
 }
 
@@ -217,12 +203,13 @@ const scheduleEvents: ScheduleEvent[] = [
   }
 
   @media (max-width: 640px) {
+    position: static;
     display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    text-align: left;
-    order: 2;
-    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+    width: 120px;
+    padding-left: 1rem;
 
     .time {
       margin-bottom: 0;
@@ -247,29 +234,69 @@ const scheduleEvents: ScheduleEvent[] = [
   position: relative;
   z-index: 2;
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+
+  &:active {
+    transform: scale(0.95);
+  }
 
   .icon {
     color: white;
     font-size: 1.5rem;
-    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  &:hover {
+    .icon {
+      transform: rotate(360deg);
+    }
   }
 
   @media (max-width: 640px) {
-    width: 2.5rem;
-    height: 2.5rem;
+    margin: 0;
+    position: relative;
+    margin-left: calc(120px + 2rem);
 
-    .icon {
-      font-size: 1.2rem;
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      width: 2px;
+      height: 2.5rem;
+      background: rgba(174, 174, 174);
+      transform: translateX(-50%);
+    }
+
+    &::before {
+      bottom: 100%;
+    }
+
+    &::after {
+      top: 100%;
+    }
+
+    .timeline-items>.event-block:first-child & {
+      &::before {
+        display: none;
+      }
+    }
+
+    .timeline-items>.event-block:last-child & {
+      &::after {
+        display: none;
+      }
     }
   }
 }
 
 .content-block {
   position: absolute;
-  top: 3rem;
+  top: 4rem;
   left: 50%;
   transform: translateX(-50%) translateY(0.5rem);
   opacity: 0;
+  pointer-events: none;
   width: 200px;
   background: rgba(255, 255, 255, 0.1);
   padding: 1rem;
@@ -278,16 +305,24 @@ const scheduleEvents: ScheduleEvent[] = [
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 10;
 
+  &.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+    pointer-events: auto;
+    z-index: 20;
+
+    .connector {
+      height: 1rem;
+      opacity: 1;
+    }
+  }
+
   .connector {
     position: absolute;
-    top: -1.5rem;
+    top: -1rem;
     left: 50%;
     width: 2px;
-    height: 0;
-    background: linear-gradient(to bottom,
-        transparent,
-        rgba(255, 255, 255, 0.3) 50%,
-        rgba(255, 255, 255, 0.3));
+    background: rgba(255, 255, 255, 0.1);
     transform: translateX(-50%);
     opacity: 0;
     transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
@@ -303,7 +338,7 @@ const scheduleEvents: ScheduleEvent[] = [
     top: auto;
     left: auto;
     transform: translateY(-0.5rem);
-    width: 100%;
+    width: 10px;
     order: 3;
     margin-left: 0;
 
@@ -322,5 +357,99 @@ const scheduleEvents: ScheduleEvent[] = [
   font-family: 'morano', 'JasonHandwriting8';
   font-weight: 200;
   line-height: 1.5;
+}
+
+@media (max-width: 640px) {
+  .timeline-items {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding-left: 0;
+  }
+
+  .event-block {
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    gap: 1rem;
+    position: relative;
+    padding: 2rem 1rem;
+  }
+
+  .time-title-block {
+    position: static;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+    width: 120px;
+
+    s .time {
+      margin-bottom: 0;
+      font-size: 1.2rem;
+    }
+
+    .title {
+      font-size: 1.1rem;
+    }
+  }
+
+  .icon-block {
+    margin: 0;
+    position: relative;
+
+    .content-block {
+      position: absolute;
+      top: 50%;
+      left: calc(100% + 1rem);
+      transform: translateY(-50%) translateX(0);
+      width: calc(100vw - 16rem);
+      max-width: 150px;
+      margin: 0;
+      opacity: 0;
+      pointer-events: none;
+
+      &.show {
+        opacity: 1;
+        transform: translateY(-50%) translateX(0);
+        pointer-events: auto;
+
+        .connector {
+          width: 1rem;
+          opacity: 1;
+        }
+      }
+
+      .connector {
+        top: 50%;
+        left: -1rem;
+        width: 0;
+        height: 2px;
+        transform: translateY(-50%);
+      }
+    }
+
+    &::before,
+    &::after {
+      left: 50%;
+      width: 2px;
+      background: rgb(141, 148, 169);
+      transform: translateX(-50%);
+    }
+
+    &::before {
+      top: -2.5rem;
+      height: 2.5rem;
+    }
+
+    &::after {
+      bottom: -2.5rem;
+      height: 2.5rem;
+    }
+  }
+
+  .mx-auto {
+    padding-top: 2rem !important;
+  }
 }
 </style>

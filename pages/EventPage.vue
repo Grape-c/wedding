@@ -1,9 +1,35 @@
 <template>
   <div class="page-wrapper background">
     <div class="px-4 py-2 md:py-10 mt-16">
+      <div class="text-center mb-8">
+        <h1
+          class="font-handwriting text-rose-200 text-3xl md:text-4xl flex items-center justify-center gap-2 title-size"
+        >
+          2025年05月17日(六)
+        </h1>
+        <h1
+          class="font-handwriting text-rose-200 text-3xl md:text-4xl justify-center gap-2 title-size"
+        >
+          辛志平校場故居 - (TAIVII餐酒館)
+          <br>
+          <div
+            class="cursor-pointer hover:text-rose-300 transition-colors mt-2 flex items-center justify-center gap-2 location-button"
+            @click="showTrafficInfo = true"
+          >
+            <UIcon
+              name="i-lucide-map-pin"
+              class="text-rose-200 animate-bounce"
+            />
+            <span>新竹市東區東門街32號</span>
+            <UIcon
+              name="i-lucide-chevron-right"
+              class="text-rose-200/70"
+            />
+          </div>
+        </h1>
+      </div>
       <div
-        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8"
-      >
+        class="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-6">
         <div
           v-for="(event, index) in events"
           :key="index"
@@ -55,12 +81,115 @@
           </div>
         </div>
       </div>
+
+      <!-- 修改底部分隔線 -->
+      <div class="mt-12 flex items-center justify-center">
+        <div
+          class="w-2/3 h-[2px] bg-gradient-to-r from-transparent via-rose-200/40 to-transparent"
+        />
+      </div>
     </div>
+
+    <!-- 交通資訊彈窗 -->
+    <Teleport to="body">
+      <div
+        v-if="showTrafficInfo"
+        class="modal-overlay"
+      >
+        <div
+          class="fixed inset-0 bg-black/70 flex items-center justify-center z-[9999] px-4 py-8"
+          @click.self="showTrafficInfo = false"
+        >
+          <div
+            class="bg-white/10 backdrop-blur-lg rounded-lg p-6 max-w-5xl w-full max-h-[90vh] overflow-y-auto"
+          >
+            <div class="flex flex-col items-center mb-8">
+              <div class="flex items-center justify-between w-full mb-2">
+                <div class="w-8" /> <!-- 空的 div 用來平衡右側關閉按鈕 -->
+                <h2 class="text-4xl font-handwriting text-rose-200">交通資訊</h2>
+                <button
+                  class="text-white/80 hover:text-white w-8 flex justify-end"
+                  @click="showTrafficInfo = false"
+                >
+                  <UIcon name="i-lucide-x" />
+                </button>
+              </div>
+              <div
+                class="w-1/3 h-px bg-gradient-to-r from-transparent via-rose-200/30 to-transparent"
+              />
+            </div>
+            <div class="flex flex-col md:flex-row gap-6">
+              <!-- 左側文字資訊 -->
+              <div class="text-white/90 font-handwriting space-y-4 md:w-1/2">
+                <div class="space-y-2">
+                  <div class="flex items-center">
+                    <UIcon
+                      name="i-lucide-circle-parking"
+                      class="text-rose-200"
+                    />
+                    <h3 class="ml-2 text-xl text-rose-200">停車資訊</h3>
+                  </div>
+                  <p class="ml-4">1.辛志平門口公有停車格</p>
+                  <p class="ml-4">2.竹市東區區公所停車場</p>
+                  <p class="ml-4">3.東大陸橋下停車場-中華站</p>
+                  <p class="ml-4">4.遠見東民停車場</p>
+                  <p class="ml-4">5.東門城圓環停車場</p>
+                </div>
+                <div class="space-y-2">
+                  <div class="flex items-center">
+                    <UIcon
+                      name="i-lucide-bike"
+                      class="text-rose-200"
+                    />
+                    <h3 class="ml-2 text-xl text-rose-200">UBike</h3>
+                  </div>
+                  <p class="ml-4">辛志平門口設有UBike1.0站點</p>
+                </div>
+                <div>
+                  <div class="flex items-center">
+                    <UIcon
+                      name="i-lucide-train"
+                      class="text-rose-200"
+                    />
+                    <h3 class="ml-2 text-xl text-rose-200">大眾運輸</h3>
+                  </div>
+                  <p class="ml-4 mb-2">
+                    <span class="transport-label">台鐵</span>
+                    新竹火車站，步行約10分鐘可抵達
+                  </p>
+                  <p class="ml-4 mb-2">
+                    <span class="transport-label">高鐵</span>
+                    新竹高鐵站，轉搭六家台鐵至新竹火車站，步行10分鐘可抵達
+                  </p>
+                  <p class="ml-4">
+                    <span class="transport-label">客運</span>
+                    新竹轉運站，步行約15分鐘/計程車約5分鐘可抵達
+                  </p>
+                </div>
+              </div>
+
+              <!-- 右側地圖 -->
+              <div class="md:w-1/2 rounded-lg overflow-hidden">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3622.2026467881088!2d120.97134567375645!3d24.804362084098383!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3468355de6cc9125%3A0x43b38dc3f43e2df9!2sTAIVII%E9%A4%90%E9%85%92%E9%A4%A8%E8%BE%9B%E5%BF%97%E5%B9%B3(%E5%BE%8C%E6%A3%9F)(%E6%96%B0%E7%AB%B9%E5%B8%82)!5e0!3m2!1szh-TW!2stw!4v1711334622599!5m2!1szh-TW!2stw"
+                  width="100%"
+                  height="100%"
+                  style="border:0;"
+                  allowfullscreen
+                  loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </Teleport>
   </div>
 </template>
 
 <script setup lang="ts">
-import { onMounted, onUnmounted, ref } from 'vue';
+import { onMounted, onUnmounted, ref, watch } from 'vue';
 
 // 檢測是否為移動設備
 const isMobile = ref(false);
@@ -89,8 +218,20 @@ const events: Event[] = [
   {
     title: '酒水暢飲',
     icon: 'i-lucide-wine',
-    description: '提供酒水，住附近的朋友們走路有益身體健康!',
+    description: '提供無限量精緻酒水，好朋友們走路有益身體健康!',
     details: '喝酒不開車，開車不喝酒'
+  },
+  {
+    title: '花藝帶回家',
+    icon: 'i-lucide-flower-2',
+    description: '響應環保，婚禮結束後花藝將裝束供賓客帶走',
+    details: '有興趣的親朋好友們可以留下來索取!'
+  },
+  {
+    title: '現場活動',
+    icon: 'i-lucide-palette',
+    description: '現場有婚禮速畫家與限量點心吧',
+    details: '提早來不怕沒事做，還可以享用美味點心'
   },
   {
     title: '會場限制',
@@ -102,21 +243,26 @@ const events: Event[] = [
     title: '服裝要求',
     icon: 'i-lucide-shirt',
     description: '服裝要求不限，新娘不怕被比下去',
-    details: '大家都可以穿得美美的，一起創造美好回憶~'
+    details: '大家盡量穿得美美的，一起創造美好回憶~'
   },
-  {
-    title: '花藝帶回家',
-    icon: 'i-lucide-flower-2',
-    description: '響應環保，婚禮結束後花藝將裝束供賓客帶走',
-    details: '有興趣的親朋好友們可以留下來索取!'
-  },
-  {
-    title: '現場活動',
-    icon: 'i-lucide-palette',
-    description: '現場有婚禮小畫家與精緻點心bar',
-    details: '提早來不怕沒事做，還可以享用美味點心'
-  }
 ];
+
+const showTrafficInfo = ref(false);
+
+
+// 監聽彈窗狀態，控制背景滾動
+watch(showTrafficInfo, (newValue) => {
+  if (newValue) {
+    document.body.classList.add('modal-open');
+  } else {
+    document.body.classList.remove('modal-open');
+  }
+});
+
+// 組件卸載時確保清理
+onUnmounted(() => {
+  document.body.classList.remove('modal-open');
+});
 </script>
 
 <style scoped lang="scss">
@@ -126,10 +272,14 @@ const events: Event[] = [
 }
 
 .font-handwriting {
-  font-family: 'morano', 'JasonHandwriting8';
+  font-family: JasonHandwriting8, 'JasonHandwriting8';
   font-weight: 200;
   font-size: 1.1rem;
   line-height: 1.5;
+}
+
+.title-size {
+  font-size: 1.3rem;
 }
 
 .ddd:hover {
@@ -151,23 +301,15 @@ const events: Event[] = [
   text-align: center;
   cursor: pointer;
   overflow: hidden;
-  height: 180px;
+  height: 240px;
 
   @media (min-width: 640px) {
-    padding: 2rem;
-    height: 220px;
+    height: 300px;
   }
 
-  @media (max-width: 640px) {
-    height: 160px;
-
-    .card-details {
-      padding: 1rem;
-    }
-
-    .divider {
-      margin: 0.5rem auto;
-    }
+  @media (min-width: 1024px) {
+    height: 320px;
+    padding: 1.5rem;
   }
 
   &:hover {
@@ -218,22 +360,29 @@ const events: Event[] = [
   z-index: 1;
 }
 
+.details-header {
+  margin-bottom: 0.75rem;
+  width: 100%;
+}
+
 .divider {
   width: 60%;
   height: 1px;
   background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.5), transparent);
-  margin: 1rem auto;
+  margin: 0.75rem auto;
+  opacity: 1;
+  transition: none;
+  display: block;
 }
 
 .details-body {
   width: 100%;
   text-align: center;
+  margin-top: 0.75rem;
 
   p {
-    margin-bottom: 0.5rem;
-
-    &:last-child {
-      margin-bottom: 0;
+    &:first-child {
+      margin-bottom: 0.75rem;
     }
   }
 }
@@ -257,5 +406,160 @@ const events: Event[] = [
   background-position: center;
   background-repeat: no-repeat;
   z-index: -1;
+}
+
+// 優化彈窗動畫
+.fixed {
+  animation: fadeIn 0.3s ease;
+
+  >div {
+    animation: slideUp 0.3s ease;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.transport-label {
+  display: inline-block;
+  padding: 0.1rem 0.3rem;
+  background: rgba(228, 154, 25, 0.1);
+  border: 1px solid rgba(251, 207, 232, 0.3);
+  border-radius: 4px;
+  color: #fbcfe8;
+  font-weight: 500;
+  margin-right: 0.5rem;
+  backdrop-filter: blur(4px);
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+  isolation: isolate;
+
+  &::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: transparent;
+  }
+}
+
+// 當彈窗開啟時，禁止背景滾動
+:global(body.modal-open) {
+  overflow: hidden;
+}
+
+// 自定義滾動條樣式
+.max-h-\[90vh\] {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(251, 207, 232, 0.3) transparent;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(251, 207, 232, 0.3);
+    border-radius: 3px;
+  }
+}
+
+.location-button {
+  position: relative;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(4px);
+
+  &::after {
+    content: '點擊查看交通資訊';
+    position: absolute;
+    bottom: -1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.875rem;
+    color: rgba(251, 207, 232, 0.7);
+    white-space: nowrap;
+
+    @media (min-width: 640px) {
+      content: '';
+    }
+  }
+
+  @media (hover: hover) {
+    &:hover {
+      background: rgba(255, 255, 255, 0.15);
+      transform: translateY(-1px);
+    }
+  }
+
+  @media (max-width: 640px) {
+    margin-top: 1rem;
+    padding: 0.75rem 1.5rem;
+  }
+}
+
+// 調整地圖圖標的動畫
+.animate-bounce {
+  animation: gentleBounce 2s infinite;
+}
+
+@keyframes gentleBounce {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+@media (max-width: 1024px) {
+  .card-details {
+    padding: 1rem;
+  }
+
+  .divider {
+    margin: 0.5rem auto;
+  }
+}
+
+/* 調整分隔線的樣式 */
+.bg-gradient-to-r {
+  background: linear-gradient(to right,
+      transparent,
+      rgba(251, 207, 232, 0.4),
+      /* 增加透明度 */
+      transparent);
 }
 </style>
