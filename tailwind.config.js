@@ -1,14 +1,24 @@
 /** @type {import('tailwindcss').Config} */
-export default {
+module.exports = {
   content: [
-    "./app.vue",
-    "./components/**/*.{vue,js,ts}",
-    "./layouts/**/*.vue",
-    "./pages/**/*.vue",
-    "./plugins/**/*.{js,ts}",
+    './components/**/*.{vue,js,ts}',
+    './layouts/**/*.vue',
+    './pages/**/*.vue',
+    './app.vue'
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        sans: ['Inter var', 'sans-serif'],
+      },
+      colors: {
+        blue: {
+          100: '#dbeafe',
+          DEFAULT: '#3b82f6',
+          600: '#2563eb'
+        }
+      }
+    }
   },
-  plugins: [],
-}
+  plugins: [require('@tailwindcss/forms')]
+} 

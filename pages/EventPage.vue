@@ -16,13 +16,13 @@
             class="cursor-pointer hover:text-rose-300 transition-colors mt-2 flex items-center justify-center gap-2 location-button"
             @click="showTrafficInfo = true"
           >
-            <UIcon
-              name="i-lucide-map-pin"
+            <Icon
+              name="lucide-map-pin"
               class="text-rose-200 animate-bounce"
             />
             <span>新竹市東區東門街32號</span>
-            <UIcon
-              name="i-lucide-chevron-right"
+            <Icon
+              name="lucide-chevron-right"
               class="text-rose-200/70"
             />
           </div>
@@ -38,7 +38,7 @@
           <div class="card-container">
             <div class="card-content">
               <div class="flex flex-col items-center justify-center h-full">
-                <UIcon
+                <Icon
                   :name="event.icon"
                   :size="isMobile ? 40 : 50"
                   class="text-rose-200 mb-4 sm:mb-6 icon"
@@ -52,7 +52,7 @@
             <div class="card-details">
               <div class="details-header">
                 <div class="flex flex-col items-center w-full">
-                  <UIcon
+                  <Icon
                     :name="event.icon"
                     :size="isMobile ? 20 : 24"
                     class="text-rose-200 mb-2"
@@ -111,7 +111,7 @@
                   class="text-white/80 hover:text-white w-8 flex justify-end"
                   @click="showTrafficInfo = false"
                 >
-                  <UIcon name="i-lucide-x" />
+                  <Icon name="lucide-x" />
                 </button>
               </div>
               <div
@@ -123,8 +123,8 @@
               <div class="text-white/90 font-handwriting space-y-4 md:w-1/2">
                 <div class="space-y-2">
                   <div class="flex items-center">
-                    <UIcon
-                      name="i-lucide-circle-parking"
+                    <Icon
+                      name="lucide-circle-parking"
                       class="text-rose-200"
                     />
                     <h3 class="ml-2 text-xl text-rose-200">停車資訊</h3>
@@ -137,8 +137,8 @@
                 </div>
                 <div class="space-y-2">
                   <div class="flex items-center">
-                    <UIcon
-                      name="i-lucide-bike"
+                    <Icon
+                      name="lucide-bike"
                       class="text-rose-200"
                     />
                     <h3 class="ml-2 text-xl text-rose-200">UBike</h3>
@@ -147,8 +147,8 @@
                 </div>
                 <div>
                   <div class="flex items-center">
-                    <UIcon
-                      name="i-lucide-train"
+                    <Icon
+                      name="lucide-train"
                       class="text-rose-200"
                     />
                     <h3 class="ml-2 text-xl text-rose-200">大眾運輸</h3>
@@ -217,31 +217,31 @@ interface Event {
 const events: Event[] = [
   {
     title: '酒水暢飲',
-    icon: 'i-lucide-wine',
+    icon: 'lucide-wine',
     description: '提供無限量精緻酒水，好朋友們走路有益身體健康!',
     details: '喝酒不開車，開車不喝酒'
   },
   {
     title: '花藝帶回家',
-    icon: 'i-lucide-flower-2',
+    icon: 'lucide-flower-2',
     description: '響應環保，婚禮結束後花藝將裝束供賓客帶走',
     details: '有興趣的親朋好友們可以留下來索取!'
   },
   {
     title: '現場活動',
-    icon: 'i-lucide-palette',
+    icon: 'lucide-palette',
     description: '現場有婚禮速畫家與限量點心吧',
     details: '提早來不怕沒事做，還可以享用美味點心'
   },
   {
     title: '會場限制',
-    icon: 'i-lucide-building-2',
+    icon: 'lucide-building-2',
     description: '辛志平為百年古蹟，禁止吸煙與攜帶寵物',
     details: '為保護古蹟環境，請配合場地規範'
   },
   {
     title: '服裝要求',
-    icon: 'i-lucide-shirt',
+    icon: 'lucide-shirt',
     description: '服裝要求不限，新娘不怕被比下去',
     details: '大家盡量穿得美美的，一起創造美好回憶~'
   },

@@ -21,7 +21,7 @@
                 @mouseleave="handleInteraction(null)"
                 @click="handleInteraction(index)"
               >
-                <UIcon
+                <Icon
                   :name="event.icon"
                   class="icon"
                 />
@@ -63,31 +63,31 @@ interface ScheduleEvent {
 const scheduleEvents: ScheduleEvent[] = [
   {
     time: '11:00',
-    icon: 'i-lucide-users',
+    icon: 'lucide-users',
     title: '入席',
     description: '歡迎親朋好友蒞臨，現場備有小活動與餐前點心，盡量提早入席~'
   },
   {
     time: '11:30',
-    icon: 'i-lucide-party-popper',
+    icon: 'lucide-party-popper',
     title: '開場',
     description: '婚禮正式開始，賓客們請在入場前至吧台索取喜愛的酒水，等待新人進場一起乾杯!'
   },
   {
     time: '12:00',
-    icon: 'i-lucide-utensils',
+    icon: 'lucide-utensils',
     title: '午宴開始',
     description: '享用辛志平的美味佳餚，共度歡樂時光<3'
   },
   {
     time: '13:00',
-    icon: 'i-lucide-camera',
+    icon: 'lucide-camera',
     title: '活動時間',
     description: '再去拿杯酒，讓我們跟你敬酒吧!還有你不能錯過的活動時間喔~新郎準備很久呢'
   },
   {
     time: '14:30',
-    icon: 'i-lucide-heart-handshake',
+    icon: 'lucide-heart-handshake',
     title: '落幕',
     description: '感謝各位的蒞臨祝福，期待下次相見敘舊!'
   }

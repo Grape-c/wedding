@@ -8,50 +8,51 @@
     </div>
 
     <!-- 導航選單 RWD -->
-    <UNavigationMenu
-      :items="navigationItems"
-      variant="link"
-      class="flex items-center justify-center transition-colors p-2"
-      :ui="{
-        list: 'flex items-center justify-center gap-6 sm:gap-6 lg:gap-10',
-        item: 'nav-item'
-      }"
-    >
-      <template #item="{ item }">
-        <span class="nav-link">
-          <!-- 在大螢幕上顯示完整文字 -->
-          <span class="hidden sm:inline">
-            {{ item.label.split('-')[0] }}
-          </span>
-          <!-- 在小螢幕上只顯示圖標 -->
-          <UIcon
-            :name="item.icon"
-            class="icon-size"
-          />
-          <span class="hidden lg:inline">
-            {{ item.label.split('-')[1] }}
-          </span>
-          <div
-            v-if="isActiveRoute(item.to)"
-            class="active-indicator"
+    <nav class="flex items-center justify-center transition-colors p-2">
+      <ul class="flex items-center justify-center gap-6 sm:gap-6 lg:gap-10">
+        <li
+          v-for="item in navigationItems"
+          :key="item.to"
+          class="nav-item"
+        >
+          <NuxtLink
+            :to="item.to"
+            class="nav-link"
           >
-            <svg
-              class="w-full h-full overflow-visible"
-              preserveAspectRatio="none"
-              viewBox="0 0 100 25"
+            <!-- 在大螢幕上顯示完整文字 -->
+            <span class="hidden sm:inline">
+              {{ item.label.split('-')[0] }}
+            </span>
+            <!-- 在小螢幕上只顯示圖標 -->
+            <Icon
+              :name="item.icon"
+              class="icon-size"
+            />
+            <span class="hidden lg:inline">
+              {{ item.label.split('-')[1] }}
+            </span>
+            <div
+              v-if="isActiveRoute(item.to)"
+              class="active-indicator"
             >
-              <path
-                d="M0,8 C6,18 18,-3 28,12 S45,2 58,14 S73,0 85,10 S98,6 102,12"
-                class="stroke-white/70 stroke-[15] fill-none"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                pathLength="100"
-              />
-            </svg>
-          </div>
-        </span>
-      </template>
-    </UNavigationMenu>
+              <svg
+                class="w-full h-full overflow-visible"
+                preserveAspectRatio="none"
+                viewBox="0 0 100 25"
+              >
+                <path
+                  d="M0,8 C6,18 18,-3 28,12 S45,2 58,14 S73,0 85,10 S98,6 102,12"
+                  class="stroke-white/70 stroke-[15] fill-none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  pathLength="100"
+                />
+              </svg>
+            </div>
+          </NuxtLink>
+        </li>
+      </ul>
+    </nav>
 
     <div class="page-container">
       <NuxtPage :transition="{
@@ -71,17 +72,17 @@ const router = useRouter();
 const menuItems = [
   {
     label: '主頁 - Home',
-    icon: 'i-lucide-house',
+    icon: 'lucide-house',
     to: '/HomePage'
   },
   {
     label: '活動 - Events',
-    icon: 'i-lucide-badge-info',
+    icon: 'lucide-badge-info',
     to: '/EventPage'
   },
   {
     label: '流程 - Schedule',
-    icon: 'i-lucide-flower',
+    icon: 'lucide-flower',
     to: '/SchedulePage'
   }
 ];

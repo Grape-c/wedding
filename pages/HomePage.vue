@@ -177,8 +177,10 @@
         </div>
 
         <div class="relative z-10 py-8 text-content-wrapper">
-          <h1 class="text-6xl mb-2 font-bold number-font">Jim & Dorothy</h1>
-          <h2 class="text-5xl mb-3 font-bold countdown-font">德毅的一天</h2>
+          <h1 class="text-3xl md:text-6xl mb-2 font-bold number-font">Jim &
+            Dorothy</h1>
+          <h2 class="text-3xl md:text-5xl mb-3 font-bold countdown-font">德毅的一天
+          </h2>
           <!-- <h3 class="text-2xl mb-2 countdown-font">最後倒數</h3> -->
           <div class="text-4xl font-mono number-font">
             {{ formatTime(timeLeft) }}
@@ -239,10 +241,12 @@ onMounted(() => {
 
 .number-font {
   font-family: 'morano', sans-serif;
+  color: rgb(59, 47, 92);
 }
 
 .countdown-font {
   font-family: JasonHandwriting8, monospace;
+  color: rgb(59, 47, 92);
 }
 
 .background-image {

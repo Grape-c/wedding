@@ -18,3 +18,5 @@ router.beforeEach((to, from, next) => {
     <NuxtPage />
   </NuxtLayout>
 </template>
+
+<style></style>

@@ -1,27 +1,38 @@
+import { defineNuxtConfig } from 'nuxt/config';
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  compatibilityDate: '2024-11-01',
-  devtools: { enabled: true },
+  ssr: true,
 
-  modules: [
-    '@nuxt/content',
-    '@nuxt/eslint',
-    '@nuxt/fonts',
-    '@nuxt/icon',
-    '@nuxt/image',
-    '@nuxt/scripts',
-    '@nuxt/ui',
-  ],
-  css: ['~/assets/css/main.css'],
-
-  app: {
-    pageTransition: { name: 'page', mode: 'out-in' },
+  nitro: {
+    preset: 'static'
   },
 
-  routeRules: {
-    // 將根路徑重定向到 HomePage
-    '/': { redirect: '/HomePage' },
-    // 將 404 重定向到 HomePage
-    '/:pathMatch(.*)*': { redirect: '/HomePage' }
-  }
+  // app: {
+  //   pageTransition: { name: 'page', mode: 'out-in' },
+  //   baseURL: '/wedding/'
+  // },
+  // routeRules: {
+  //   '/': { redirect: '/HomePage' },
+  //   '/:pathMatch(.*)*': { redirect: '/HomePage' }
+  // },
+  // compatibilityDate: '2025-04-21',
+  modules: [
+    '@nuxt/content',
+    '@nuxt/icon',
+    '@nuxt/image'
+  ],
+
+  css: [
+    '@/assets/css/main.css'
+  ],
+
+  postcss: {
+    plugins: {
+      tailwindcss: {},
+      autoprefixer: {},
+    },
+  },
+
+  compatibilityDate: '2025-04-21',
 })
