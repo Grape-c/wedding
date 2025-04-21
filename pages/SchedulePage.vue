@@ -1,6 +1,6 @@
 <template>
   <div class="page-wrapper background">
-    <div class="mx-auto px-4 py-12 mt-4 md:mt-16 relative z-10">
+    <div class="mx-auto px-4 py-12 mt-8 md:mt-16 relative z-10">
       <div class="timeline-container">
         <div class="timeline-items">
           <!-- 遍歷所有事件 -->
@@ -65,31 +65,31 @@ const scheduleEvents: ScheduleEvent[] = [
     time: '11:00',
     icon: 'i-lucide-users',
     title: '入席',
-    description: '歡迎親朋好友蒞臨，請提早入席'
+    description: '歡迎親朋好友蒞臨，現場備有小活動與餐前點心，盡量提早入席~'
   },
   {
     time: '11:30',
     icon: 'i-lucide-party-popper',
     title: '開場',
-    description: '婚禮正式開始，新人進場'
+    description: '婚禮正式開始，賓客們請在入場前至吧台索取喜愛的酒水，等待新人進場一起乾杯!'
   },
   {
-    time: '12:30',
+    time: '12:00',
     icon: 'i-lucide-utensils',
     title: '午宴開始',
-    description: '享用美味佳餚，共度歡樂時光'
+    description: '享用辛志平的美味佳餚，共度歡樂時光<3'
   },
   {
     time: '13:00',
     icon: 'i-lucide-camera',
     title: '活動時間',
-    description: '新人敬酒與歡樂活動'
+    description: '再去拿杯酒，讓我們跟你敬酒吧!還有你不能錯過的活動時間喔~新郎準備很久呢'
   },
   {
     time: '14:30',
     icon: 'i-lucide-heart-handshake',
     title: '落幕',
-    description: '感謝各位的祝福，期待下次相見'
+    description: '感謝各位的蒞臨祝福，期待下次相見敘舊!'
   }
 ];
 
@@ -264,7 +264,7 @@ const handleInteraction = (index: number | null) => {
       left: 50%;
       width: 2px;
       height: 2.5rem;
-      background: rgba(174, 174, 174);
+      background: rgba(255, 255, 255, 0.15);
       transform: translateX(-50%);
     }
 
@@ -297,7 +297,7 @@ const handleInteraction = (index: number | null) => {
   transform: translateX(-50%) translateY(0.5rem);
   opacity: 0;
   pointer-events: none;
-  width: 200px;
+  width: 250px;
   background: rgba(255, 255, 255, 0.1);
   padding: 1rem;
   border-radius: 1rem;
@@ -334,16 +334,37 @@ const handleInteraction = (index: number | null) => {
   }
 
   @media (max-width: 640px) {
-    position: relative;
-    top: auto;
-    left: auto;
-    transform: translateY(-0.5rem);
-    width: 10px;
-    order: 3;
-    margin-left: 0;
+    position: absolute;
+    top: 50%;
+    left: calc(100% + 1rem);
+    transform: translateY(-50%);
+    width: calc(100vw - 14rem);
+    min-width: 200px;
+    max-width: 250px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 1rem;
+    margin: 0;
+
+    &.show {
+      opacity: 1;
+      pointer-events: auto;
+
+      .connector {
+        width: 1rem;
+        opacity: 1;
+      }
+    }
 
     .connector {
-      display: none;
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: -1rem;
+      width: 0;
+      height: 2px;
+      background: rgba(255, 255, 255, 0.15);
+      transform: translateY(-50%);
+      transition: all 0.3s ease;
     }
   }
 }
