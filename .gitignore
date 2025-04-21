@@ -4,6 +4,7 @@
 .nuxt
 .nitro
 .cache
+dist
 
 # Node dependencies
 node_modules
@@ -12,8 +13,11 @@ node_modules
 logs
 *.log
 
-# Misc
+# System files
 .DS_Store
+Thumbs.db
+
+# Misc
 .fleet
 .idea
 

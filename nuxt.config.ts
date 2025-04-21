@@ -5,17 +5,22 @@ export default defineNuxtConfig({
   ssr: true,
 
   nitro: {
-    preset: 'static'
+    preset: 'static',
+    prerender: {
+      crawlLinks: true,
+      routes: ['/']
+    }
   },
 
   app: {
     pageTransition: { name: 'page', mode: 'out-in' },
-    baseURL: '/wedding/'
+    baseURL: '/wedding/',
+    buildAssetsDir: '/_nuxt/'
   },
-  // routeRules: {
-  //   '/': { redirect: '/HomePage' },
-  //   '/:pathMatch(.*)*': { redirect: '/HomePage' }
-  // },
+  routeRules: {
+    '/': { redirect: '/HomePage' },
+    '/:pathMatch(.*)*': { redirect: '/HomePage' }
+  },
   // compatibilityDate: '2025-04-21',
   modules: [
     '@nuxt/content',
