@@ -1,0 +1,6 @@
+{
+  "rules": {
+    "optional-chaining": "off",
+    "@typescript-eslint/no-optional-chaining": "off"
+  }
+} 
