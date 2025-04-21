@@ -8,10 +8,10 @@ export default defineNuxtConfig({
     preset: 'static'
   },
 
-  // app: {
-  //   pageTransition: { name: 'page', mode: 'out-in' },
-  //   baseURL: '/wedding/'
-  // },
+  app: {
+    pageTransition: { name: 'page', mode: 'out-in' },
+    baseURL: '/wedding/'
+  },
   // routeRules: {
   //   '/': { redirect: '/HomePage' },
   //   '/:pathMatch(.*)*': { redirect: '/HomePage' }
