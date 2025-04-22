@@ -1,1 +1,0 @@
-{"id":"12f28593-8378-47c2-8c8b-162e578a9eff","timestamp":1745287831920,"matcher":{"static":{"/":{"redirect":"/HomePage"},"/__nuxt_content/content/sql_dump":{"prerender":true}},"wildcard":{},"dynamic":{"(.*)*":{"static":{"/":{"redirect":"/HomePage"}},"wildcard":{},"dynamic":{}}}},"prerendered":["/HomePage","/EventPage","/SchedulePage"]}
