@@ -1,1 +1,0 @@
-{"id":"e8ec9cf9-285e-4d68-a192-a4547cfc6864","timestamp":1745290522212,"matcher":{"static":{"/":{"redirect":"/HomePage"},"/__nuxt_content/content/sql_dump":{"prerender":true}},"wildcard":{},"dynamic":{"(.*)*":{"static":{"/":{"redirect":"/HomePage"}},"wildcard":{},"dynamic":{}}}},"prerendered":[]}
