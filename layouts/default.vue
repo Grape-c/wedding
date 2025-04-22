@@ -89,7 +89,8 @@ const menuItems = [
 
 // 判斷當前路由是否激活
 const isActiveRoute = (path: string) => {
-  return route.path === path;
+  const currentPath = route.path.replace('/wedding', '');
+  return currentPath === path;
 };
 
 // 計算屬性：根據當前路由更新選單項
@@ -109,7 +110,6 @@ onMounted(() => {
     if (glowEffect.value) {
       const x = e.clientX;
       const y = e.clientY;
-
       glowEffect.value.style.left = `${x}px`;
       glowEffect.value.style.top = `${y}px`;
       glowEffect.value.style.opacity = '1';
@@ -122,20 +122,13 @@ onMounted(() => {
     }
   };
 
-  // 在整個文檔上監聽滑鼠移動
   document.addEventListener('mousemove', handleMouseMove);
   document.addEventListener('mouseleave', handleMouseLeave);
 
-  // 清理函數
   onUnmounted(() => {
     document.removeEventListener('mousemove', handleMouseMove);
     document.removeEventListener('mouseleave', handleMouseLeave);
   });
-
-  // 如果當前路徑是根路徑 '/'，導向 HomePage
-  if (router.currentRoute.value.path === '/') {
-    router.push('/HomePage');
-  }
 });
 </script>
 
