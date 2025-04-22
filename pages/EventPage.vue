@@ -1,6 +1,6 @@
 <template>
-  <div class="page-wrapper background">
-    <div class="px-4 py-2 md:py-10 mt-16">
+  <div class="page-wrapper background pb-10 md:pb-0">
+    <div class="px-4 py-2 md:py-10 mt-16 mb-16 md:mb-0">
       <div class="text-center mb-8">
         <h1
           class="font-handwriting text-rose-200 text-3xl md:text-4xl flex items-center justify-center gap-2 title-size"
@@ -83,7 +83,7 @@
       </div>
 
       <!-- 修改底部分隔線 -->
-      <div class="fixed bottom-[10vh] left-0 w-full flex items-center justify-center">
+      <div class="hidden md:flex fixed bottom-[10vh] left-0 w-full items-center justify-center">
         <div
           class="w-2/3 h-[2px] bg-gradient-to-r from-transparent via-rose-200/40 to-transparent"
         />
@@ -225,13 +225,13 @@ const events: Event[] = [
     title: '花藝帶回家',
     icon: 'lucide-flower-2',
     description: '響應環保，婚禮結束後花藝將裝束供賓客帶走',
-    details: '有興趣的親朋好友們可以留下來索取!'
+    details: '和德馨一樣喜歡花花親朋好友們可以留下來索取！'
   },
   {
     title: '現場活動',
     icon: 'lucide-palette',
     description: '現場有婚禮速畫家與限量點心吧',
-    details: '提早來不怕沒事做，還可以享用美味點心'
+    details: '提早來不怕沒事做，用美味點心來開開你的胃吧！'
   },
   {
     title: '會場限制',
