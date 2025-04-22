@@ -1,0 +1,1 @@
+import{_ as o}from"./CPUn1Vl8.js";import{c as r,f as t,_ as s}from"./DWY2ABM-.js";const c={};function n(e,a){return t(),r("tbody",null,[s(e.$slots,"default")])}const _=o(c,[["render",n]]);export{_ as default};
