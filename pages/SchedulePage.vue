@@ -1,6 +1,6 @@
 <template>
   <div class="page-wrapper background">
-    <div class="mx-auto px-4 py-12 mt-8 md:mt-16 relative z-10 mb-8">
+    <div class="py-12 mt-4 md:mt-16 relative z-10 mb-8">
       <div class="timeline-container">
         <div class="timeline-items">
           <!-- 遍歷所有事件 -->
@@ -385,8 +385,8 @@ const handleClick = (index: number) => {
     left: calc(100% + 1rem);
     transform: translateY(-50%);
     width: calc(100vw - 14rem);
-    min-width: 200px;
-    max-width: 250px;
+    min-width: 180px;
+    max-width: 230px;
     background: rgba(255, 255, 255, 0.1);
     padding: 1rem;
     margin: 0;
@@ -440,9 +440,8 @@ const handleClick = (index: number) => {
     flex-direction: row;
     align-items: center;
     width: 100%;
-    gap: 1rem;
     position: relative;
-    padding: 2rem 1rem;
+    padding: 2rem 0rem;
   }
 
   .time-title-block {

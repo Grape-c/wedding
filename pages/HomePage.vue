@@ -181,7 +181,6 @@
             Dorothy</h1>
           <h2 class="text-3xl md:text-5xl mb-3 font-bold countdown-font">德毅的一天
           </h2>
-          <!-- <h3 class="text-2xl mb-2 countdown-font">最後倒數</h3> -->
           <div class="text-3xl md:text-4xl font-mono number-font">
             {{ formatTime(timeLeft) }}
           </div>
@@ -261,6 +260,11 @@ onMounted(() => {
   background-repeat: no-repeat;
   z-index: -1;
 }
+@media (max-width: 639px) {
+  .background-image {
+    background-position: 58% center; /* 偏右一些 */
+  }
+}
 
 .blob {
   filter: blur(2px);
@@ -332,7 +336,7 @@ onMounted(() => {
 
 .timer-container {
   @media (max-width: 640px) {
-    transform: translateX(50px);
+    transform: translateX(36px);
   }
 }
 
@@ -365,6 +369,10 @@ onMounted(() => {
 .text-content-wrapper {
   opacity: 0;
   animation: fadeIn 0.5s ease forwards;
+  width: 200px;
+  @media (min-width: 640px) {
+    width: 400px;
+  }
 }
 
 @keyframes fadeIn {

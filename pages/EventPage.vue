@@ -225,7 +225,7 @@ const events: Event[] = [
     title: '花藝帶回家',
     icon: 'lucide-flower-2',
     description: '響應環保，婚禮結束後花藝將裝束供賓客帶走',
-    details: '和德馨一樣喜歡花花親朋好友們可以留下來索取！'
+    details: '和德馨一樣喜歡花花的親朋好友們可以留下來索取！'
   },
   {
     title: '現場活動',
