@@ -17,9 +17,9 @@
 
               <div
                 class="icon-block"
-                @mouseenter="handleInteraction(index)"
-                @mouseleave="handleInteraction(null)"
-                @click="handleInteraction(index)"
+                @mouseenter="handleHover(index)"
+                @mouseleave="handleHover(null)"
+                @click="handleClick(index)"
               >
                 <Icon
                   :name="event.icon"
@@ -95,13 +95,15 @@ const scheduleEvents: ScheduleEvent[] = [
 
 const hoveredIndex = ref<number | null>(null);
 
-const handleInteraction = (index: number | null) => {
-  // 如果點擊的是當前顯示的項目，則關閉它
-  if (hoveredIndex.value === index) {
-    hoveredIndex.value = null;
-  } else {
+const handleHover = (index: number | null) => {
+  // 只在大螢幕處理 hover
+  if (window.matchMedia('(min-width: 640px)').matches) {
     hoveredIndex.value = index;
   }
+};
+
+const handleClick = (index: number) => {
+  hoveredIndex.value = hoveredIndex.value === index ? null : index;
 };
 </script>
 
@@ -285,6 +287,13 @@ const handleInteraction = (index: number | null) => {
     .timeline-items>.event-block:last-child & {
       &::after {
         display: none;
+      }
+    }
+
+    /* 在移動設備上禁用 hover 效果 */
+    &:hover {
+      .icon {
+        transform: none;
       }
     }
   }
