@@ -441,7 +441,7 @@ const handleClick = (index: number) => {
     flex-direction: column;
     align-items: flex-start;
     gap: 0.25rem;
-    width: 120px;
+    width: 100px;
 
     s .time {
       margin-bottom: 0;

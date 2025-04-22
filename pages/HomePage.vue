@@ -182,7 +182,7 @@
           <h2 class="text-3xl md:text-5xl mb-3 font-bold countdown-font">德毅的一天
           </h2>
           <!-- <h3 class="text-2xl mb-2 countdown-font">最後倒數</h3> -->
-          <div class="text-4xl font-mono number-font">
+          <div class="text-3xl md:text-4xl font-mono number-font">
             {{ formatTime(timeLeft) }}
           </div>
         </div>
@@ -260,19 +260,10 @@ onMounted(() => {
   background-position: center;
   background-repeat: no-repeat;
   z-index: -1;
-  /* Ensure it is at the bottom */
 }
 
 .blob {
   filter: blur(2px);
-}
-
-
-.background-image {
-  background-image: url('/wedding/assets/image/HomePageBG.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
 }
 
 .animate-blob1 {
