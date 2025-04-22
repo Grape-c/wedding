@@ -21,11 +21,20 @@ export default defineNuxtConfig({
     baseURL: '/wedding/',
     cdnURL: '/wedding/',
     buildAssetsDir: '/static/',
+    head: {
+      htmlAttrs: {
+        lang: 'zh-TW'
+      },
+      meta: [
+        { charset: 'utf-8' },
+        { name: 'viewport', content: 'width=device-width, initial-scale=1' }
+      ]
+    }
   },
 
   routeRules: {
-    '/': { redirect: '/HomePage' },
-    '/:pathMatch(.*)*': { redirect: '/HomePage' }
+    '/': { redirect: '/wedding/HomePage' },
+    '/wedding': { redirect: '/wedding/HomePage' }
   },
 
   modules: [
