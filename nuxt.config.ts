@@ -19,7 +19,7 @@ export default defineNuxtConfig({
   app: {
     pageTransition: { name: 'page', mode: 'out-in' },
     baseURL: '/wedding/',
-    buildAssetsDir: '/_nuxt/'
+    buildAssetsDir: '/_nuxt/',
   },
   routeRules: {
     '/': { redirect: '/HomePage' },
@@ -33,7 +33,7 @@ export default defineNuxtConfig({
   ],
 
   css: [
-    '@/public/assets/css/main.css'
+    '@/assets/css/main.css'
   ],
 
   postcss: {
