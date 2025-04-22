@@ -17,6 +17,7 @@
 
               <div
                 class="icon-block"
+                :class="{ 'clicked': clickedIcon === index }"
                 @mouseenter="handleHover(index)"
                 @mouseleave="handleHover(null)"
                 @click="handleClick(index)"
@@ -94,6 +95,7 @@ const scheduleEvents: ScheduleEvent[] = [
 ];
 
 const hoveredIndex = ref<number | null>(null);
+const clickedIcon = ref<number | null>(null);
 
 const handleHover = (index: number | null) => {
   // 只在大螢幕處理 hover
@@ -103,7 +105,21 @@ const handleHover = (index: number | null) => {
 };
 
 const handleClick = (index: number) => {
-  hoveredIndex.value = hoveredIndex.value === index ? null : index;
+  // 如果已經點擊過，先重置狀態
+  if (clickedIcon.value === index) {
+    clickedIcon.value = null;
+    hoveredIndex.value = null;
+    return;
+  }
+
+  // 設置新的點擊狀態
+  clickedIcon.value = index;
+  hoveredIndex.value = index;
+
+  // 500ms 後重置點擊狀態（與動畫時間匹配）
+  setTimeout(() => {
+    clickedIcon.value = null;
+  }, 500);
 };
 </script>
 
@@ -246,11 +262,31 @@ const handleClick = (index: number) => {
     color: white;
     font-size: 1.5rem;
     transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: rotate(0deg);
+    /* 添加初始旋轉角度 */
   }
 
-  &:hover {
-    .icon {
+  /* 桌面設備的 hover 效果 */
+  @media (min-width: 640px) {
+    &:hover {
+      .icon {
+        transform: rotate(360deg);
+      }
+    }
+  }
+
+  /* 移動設備的點擊效果 */
+  @media (max-width: 639px) {
+
+    &:active .icon,
+    &.clicked .icon {
       transform: rotate(360deg);
+    }
+
+    /* 重置動畫，但不顯示過渡效果 */
+    &:not(.clicked) .icon {
+      transition: none;
+      transform: rotate(0deg);
     }
   }
 
@@ -287,13 +323,6 @@ const handleClick = (index: number) => {
     .timeline-items>.event-block:last-child & {
       &::after {
         display: none;
-      }
-    }
-
-    /* 在移動設備上禁用 hover 效果 */
-    &:hover {
-      .icon {
-        transform: none;
       }
     }
   }
