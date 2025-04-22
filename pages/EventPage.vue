@@ -83,7 +83,7 @@
       </div>
 
       <!-- 修改底部分隔線 -->
-      <div class="mt-12 flex items-center justify-center">
+      <div class="fixed bottom-[10vh] left-0 w-full flex items-center justify-center">
         <div
           class="w-2/3 h-[2px] bg-gradient-to-r from-transparent via-rose-200/40 to-transparent"
         />
@@ -442,10 +442,10 @@ onUnmounted(() => {
 .transport-label {
   display: inline-block;
   padding: 0.1rem 0.3rem;
-  background: rgba(228, 154, 25, 0.1);
-  border: 1px solid rgba(251, 207, 232, 0.3);
+  background: #f5d1d1;
+  border: 1px solid #e69696;
   border-radius: 4px;
-  color: #fbcfe8;
+  color: #e47575;
   font-weight: 500;
   margin-right: 0.5rem;
   backdrop-filter: blur(4px);

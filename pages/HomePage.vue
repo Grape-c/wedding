@@ -222,7 +222,7 @@ onMounted(() => {
   // 添加一個小延遲來觸發動畫
   setTimeout(() => {
     isLoaded.value = true
-  }, 100)
+  }, 1000)
 })
 </script>
 
@@ -241,12 +241,12 @@ onMounted(() => {
 
 .number-font {
   font-family: 'morano', sans-serif;
-  color: rgb(59, 47, 92);
+  color: rgb(47, 59, 92);
 }
 
 .countdown-font {
   font-family: JasonHandwriting8, monospace;
-  color: rgb(59, 47, 92);
+  color: rgb(47, 59, 92);
 }
 
 .background-image {
@@ -345,14 +345,20 @@ onMounted(() => {
 }
 
 .blob-container {
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.5s ease, visibility 0.5s ease;
+  opacity: 1;  /* 預設顯示 */
+  visibility: visible;
+  transition: opacity 1s ease, visibility 0s ease 1s; /* 改變 opacity 並延遲 visibility */
 }
 
 .blob-visible {
   opacity: 1;
   visibility: visible;
+}
+
+.blob-hidden {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 1s ease, visibility 0s ease 1s; /* 1秒後隱藏 visibility */
 }
 
 /* 添加預載入動畫 */

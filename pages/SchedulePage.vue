@@ -1,6 +1,6 @@
 <template>
   <div class="page-wrapper background">
-    <div class="mx-auto px-4 py-12 mt-8 md:mt-16 relative z-10">
+    <div class="mx-auto px-4 py-12 mt-8 md:mt-16 relative z-10 mb-8">
       <div class="timeline-container">
         <div class="timeline-items">
           <!-- 遍歷所有事件 -->
@@ -48,6 +48,14 @@
         </div>
       </div>
     </div>
+    <div class="hidden lg:flex fixed bottom-[11vh] left-0 w-full items-center justify-center">
+      <div class="text-sky-900 text-3xl font-handwriting font-light animate-flash-once">
+        Looking forward to seeing you on this special day
+      </div>
+    </div>
+    <div class="hidden lg:flex fixed bottom-[10vh] left-0 w-full items-center justify-center">
+        <div class="mb-18 w-2/3 h-[2px] bg-gradient-to-r from-transparent via-blue-200/40 to-transparent" />
+      </div>
   </div>
 </template>
 
@@ -72,7 +80,7 @@ const scheduleEvents: ScheduleEvent[] = [
     time: '11:30',
     icon: 'lucide-party-popper',
     title: '開場',
-    description: '婚禮正式開始，賓客們請在入場前至吧台索取喜愛的酒水，等待新人進場一起乾杯!'
+    description: '婚禮正式開始，賓客們請在入座前至吧台索取喜愛的酒水，等待新人進場一起乾杯!'
   },
   {
     time: '12:00',
@@ -84,7 +92,7 @@ const scheduleEvents: ScheduleEvent[] = [
     time: '13:00',
     icon: 'lucide-camera',
     title: '活動時間',
-    description: '再去拿杯酒，讓我們跟你敬酒吧!還有你不能錯過的活動時間喔~新郎準備很久呢'
+    description: '再去拿杯酒，讓我們跟你敬酒吧!還有你不能錯過的活動時間喔~'
   },
   {
     time: '14:30',
@@ -412,9 +420,11 @@ const handleClick = (index: number) => {
   src: url('/wedding/assets/fonts/JasonHandwriting8.ttf');
 }
 
+@import url('https://fonts.cdnfonts.com/css/ruliena');
+
 .font-handwriting {
   font-family: 'morano', 'JasonHandwriting8';
-  font-weight: 200;
+  font-weight: 100;
   line-height: 1.5;
 }
 
@@ -511,4 +521,20 @@ const handleClick = (index: number) => {
     padding-top: 2rem !important;
   }
 }
+@keyframes flash-once {
+  0% {
+    text-shadow: 0 0 6px white;
+  }
+  50% {
+    text-shadow: 0 0 15px white;
+  }
+  100% {
+    text-shadow: 0 0 6px white;
+  }
+}
+
+.animate-flash-once {
+  animation: flash-once 3s ease-out infinite;
+}
+
 </style>
