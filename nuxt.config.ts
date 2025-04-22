@@ -20,12 +20,19 @@ export default defineNuxtConfig({
     pageTransition: { name: 'page', mode: 'out-in' },
     baseURL: '/wedding/',
     buildAssetsDir: '/_nuxt/',
+    head: {
+      script: [
+        // 確保 JS 在頁面加載時正確執行
+        { src: '/wedding/_nuxt/entry.js', defer: true }
+      ]
+    }
   },
+
   routeRules: {
     '/': { redirect: '/HomePage' },
     '/:pathMatch(.*)*': { redirect: '/HomePage' }
   },
-  // compatibilityDate: '2025-04-21',
+
   modules: [
     '@nuxt/content',
     '@nuxt/icon',
@@ -43,5 +50,29 @@ export default defineNuxtConfig({
     },
   },
 
-  compatibilityDate: '2025-04-21',
+  experimental: {
+    payloadExtraction: false,
+    renderJsonPayloads: false
+  },
+
+  typescript: {
+    strict: true,
+    shim: false
+  },
+
+  vite: {
+    assetsInclude: ['**/*.ttf', '**/*.jpg', '**/*.png'],
+    build: {
+      assetsInlineLimit: 0,
+      cssCodeSplit: true,
+      rollupOptions: {
+        output: {
+          manualChunks: {
+            'vue': ['vue'],
+            'homepage': ['./pages/HomePage.vue']
+          }
+        }
+      }
+    },
+  },
 })
