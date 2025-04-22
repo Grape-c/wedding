@@ -19,6 +19,7 @@ export default defineNuxtConfig({
   app: {
     pageTransition: { name: 'page', mode: 'out-in' },
     baseURL: '/wedding/',
+    cdnURL: '/wedding/',
     buildAssetsDir: '/_nuxt/',
     head: {
       script: [
@@ -75,4 +76,6 @@ export default defineNuxtConfig({
       }
     },
   },
+
+  compatibilityDate: '2025-04-22',
 })

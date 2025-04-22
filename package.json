@@ -6,7 +6,6 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "clean": "rm -rf .nuxt .output dist",
-    "predeploy": "npm run clean && mkdir -p dist/assets && cp -r assets/* dist/assets/",
     "deploy": "nuxt generate && gh-pages -d dist",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"
