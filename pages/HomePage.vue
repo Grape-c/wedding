@@ -234,7 +234,7 @@ onMounted(() => {
 
 @font-face {
   font-family: 'JasonHandwriting8';
-  src: url('/assets/fonts/JasonHandwriting8.ttf');
+  src: url('/wedding/assets/fonts/JasonHandwriting8.ttf');
   font-display: swap;
 }
 
@@ -255,7 +255,7 @@ onMounted(() => {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url('/assets/image/HomePageBG.jpg');
+  background-image: url('/wedding/assets/image/HomePageBG.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -269,7 +269,7 @@ onMounted(() => {
 
 
 .background-image {
-  background-image: url('/assets/image/HomePageBG.jpg');
+  background-image: url('/wedding/assets/image/HomePageBG.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
