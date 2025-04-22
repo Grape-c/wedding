@@ -20,13 +20,7 @@ export default defineNuxtConfig({
     pageTransition: { name: 'page', mode: 'out-in' },
     baseURL: '/wedding/',
     cdnURL: '/wedding/',
-    buildAssetsDir: '/_nuxt/',
-    head: {
-      script: [
-        // 確保 JS 在頁面加載時正確執行
-        { src: '/wedding/_nuxt/entry.js', defer: true }
-      ]
-    }
+    buildAssetsDir: '/static/',
   },
 
   routeRules: {
