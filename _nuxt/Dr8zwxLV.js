@@ -1,0 +1,1 @@
+import{_ as o}from"./DO58TXf3.js";import{c as r,f as t,_ as s}from"./NP_JzeiK.js";const c={};function n(e,l){return t(),r("ol",null,[s(e.$slots,"default")])}const _=o(c,[["render",n]]);export{_ as default};
