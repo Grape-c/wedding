@@ -371,7 +371,7 @@ const handleInteraction = (index: number | null) => {
 
 @font-face {
   font-family: 'JasonHandwriting8';
-  src: url('@/assets/fonts/JasonHandwriting8.ttf');
+  src: url('@/public/assets/fonts/JasonHandwriting8.ttf');
 }
 
 .font-handwriting {

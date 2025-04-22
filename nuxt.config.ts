@@ -8,7 +8,11 @@ export default defineNuxtConfig({
     preset: 'static',
     prerender: {
       crawlLinks: true,
-      routes: ['/']
+      routes: ['/HomePage', '/'],
+    },
+    output: {
+      dir: './dist',
+      publicDir: './dist'
     }
   },
 
@@ -29,7 +33,7 @@ export default defineNuxtConfig({
   ],
 
   css: [
-    '@/assets/css/main.css'
+    '@/public/assets/css/main.css'
   ],
 
   postcss: {
