@@ -10,7 +10,7 @@
         <h1
           class="font-handwriting text-rose-200 text-3xl md:text-4xl justify-center gap-2 title-size"
         >
-          辛志平校場故居 - (TAIVII餐酒館)
+          辛志平校長故居 - (TAIVII餐酒館)
           <br>
           <div
             class="cursor-pointer hover:text-rose-300 transition-colors mt-2 flex items-center justify-center gap-2 location-button"
@@ -83,7 +83,9 @@
       </div>
 
       <!-- 修改底部分隔線 -->
-      <div class="hidden md:flex fixed bottom-[10vh] left-0 w-full items-center justify-center">
+      <div
+        class="hidden md:flex fixed bottom-[10vh] left-0 w-full items-center justify-center"
+      >
         <div
           class="w-2/3 h-[2px] bg-gradient-to-r from-transparent via-rose-200/40 to-transparent"
         />

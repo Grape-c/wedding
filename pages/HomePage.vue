@@ -260,9 +260,11 @@ onMounted(() => {
   background-repeat: no-repeat;
   z-index: -1;
 }
+
 @media (max-width: 639px) {
   .background-image {
-    background-position: 58% center; /* 偏右一些 */
+    background-position: 58% center;
+    /* 偏右一些 */
   }
 }
 
@@ -349,20 +351,20 @@ onMounted(() => {
 }
 
 .blob-container {
-  opacity: 1;  /* 預設顯示 */
-  visibility: visible;
-  transition: opacity 1s ease, visibility 0s ease 1s; /* 改變 opacity 並延遲 visibility */
+  opacity: 0;
+  transform: translate(-50%, -50%);
+  transition: opacity 1.1s ease;
 }
 
 .blob-visible {
   opacity: 1;
-  visibility: visible;
 }
 
 .blob-hidden {
   opacity: 0;
   visibility: hidden;
-  transition: opacity 1s ease, visibility 0s ease 1s; /* 1秒後隱藏 visibility */
+  transition: opacity 1s ease, visibility 0s ease 1s;
+  /* 1秒後隱藏 visibility */
 }
 
 /* 添加預載入動畫 */
@@ -370,6 +372,7 @@ onMounted(() => {
   opacity: 0;
   animation: fadeIn 0.5s ease forwards;
   width: 200px;
+
   @media (min-width: 640px) {
     width: 400px;
   }
