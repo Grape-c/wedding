@@ -238,7 +238,7 @@ const events: Event[] = [
   {
     title: '會場限制',
     icon: 'lucide-building-2',
-    description: '辛志平為百年古蹟，禁止吸煙與攜帶寵物，入場時需脱鞋，建議穿著襪子',
+    description: '辛志平為百年古蹟，禁止吸煙與攜帶寵物，入場時需脱鞋，請穿著襪子',
     details: '為保護古蹟環境，請配合場地規範'
   },
   {
